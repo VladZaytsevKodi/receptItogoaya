@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление Рецепта{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background-color: #fff;">
+<form method="post" enctype="multipart/form-data" style="margin-top: 20px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+<p>Нет Вашей категории? <a href="{% url 'category_add' %}" style="display: inline-block; background-color: #007bff; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Добавить Категорию</a></p>
+</div>
+{% endblock %}

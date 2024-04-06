@@ -1,0 +1,102 @@
+<!DOCTYPE html>{% load static %}
+<html>
+<head>
+    <title>{% block title %} Рецепты{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .site-header {
+            background-color: #f3f3f3;
+            padding: 20px;
+            text-align: center;
+        }
+        .site-header h1 a {
+            text-decoration: none;
+            color: #333;
+        }
+        .site-navigation .nav {
+            list-style-type: none;
+            padding: 0;
+        }
+        .site-navigation .nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+        .site-navigation .nav li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 10px;
+    }
+
+    form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    }
+
+    form p {
+        margin: 15px 0;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="site-identity">
+        <h1><a href="{% url 'index' %}">Рецепты</a></h1>
+    </div>
+    <nav class="site-navigation">
+        <ul class="nav">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'recipe_add' %}">Добавить рецепт</a></li>
+                <p>{{ user.username }}</p>
+                <li><a href="{% url 'logout' %}">Выход</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                <li><a href="{% url 'signup' %}">Регистрация</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+{% block content %}
+{% endblock %}
+<footer class="footer-distributed">
+    <p>Подвал сайта</p>
+</footer>
+</body>
+</html>
+

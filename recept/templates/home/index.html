@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="article-list" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px;">
+    {% for article in recipes %}
+    <div class="article" style="box-shadow: 0 0 10px rgba(0,0,0,0.1); width: calc(33% - 20px); border-radius: 8px; overflow: hidden; background-color: #fff; margin-bottom: 20px; transition: transform 0.3s ease;">
+        <img src="media/{{ article.image.url }}" alt="{{ article.title }}" style="width: 100%; height: auto; display: block;">
+        <h2 style="margin: 0; padding: 20px 15px 10px 15px; font-size: 20px;"><a href="{% url 'recipe_detail' recipe_id=article.id %}" style="text-decoration: none; color: inherit;">{{ article.title }}</a></h2>
+        <p style="padding: 0 15px 20px 15px; margin: 0; font-size: 16px; color: #666;">{{ article.description }}</p>
+        <p style="padding: 0 15px 20px 15px; margin: 0; font-size: 16px; color: #666;">Автор:{{ article.author }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
